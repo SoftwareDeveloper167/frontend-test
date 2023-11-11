@@ -1,8 +1,20 @@
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Layout from '../componenets/Layout'
+import axios from "axios";
 
-export default function Home() {
+export const getStaticProps = async () => {
+
+  const { data } = await axios.get('http://127.0.0.1:8000/api');
+
+  return {
+    props: {
+      data
+    }
+  }
+
+}
+
+export default function Home({ data }) {
+  // console.log(data)
   return (
     <Layout title="Challenge 1">
 
@@ -22,14 +34,28 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">cedrick74@example.org</th>
-              <td>Morning</td>
-              <td>2020-01-20</td>
-              <td>Bode-Rodriguez</td>
-              <td>09:55:16</td>
-              <td>06:55:16</td>
-            </tr>
+
+            {
+              data.map((atten, key) => {
+                var { attendances } = atten;
+                
+                return attendances.map((emp , emp_key) => {
+                  console.log(emp)
+                  return <tr key={key+'_'+emp_key} >
+                    <th scope="row">{emp.employees.email}</th>
+                    <td>{atten.shift.title}</td>
+                    <td>{atten.attendance_date}</td>
+                    <td>{atten.location.name}</td>
+                    <td>{emp.check_in}</td>
+                    <td>{emp.check_out}</td>
+                  </tr>
+                });
+
+                
+                
+              })
+            }
+
           </tbody>
         </table>
 
