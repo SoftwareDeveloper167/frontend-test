@@ -25,12 +25,13 @@ export default function Home({ data }) {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Email</th>
-              <th scope="col">Shift</th>
-              <th scope="col">Date</th>
-              <th scope="col">Location</th>
-              <th scope="col">Check in</th>
-              <th scope="col">Check out</th>
+              <th>Email</th>
+              <th>Shift</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Check in</th>
+              <th>Check out</th>
+              <th>Total Hours</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,7 @@ export default function Home({ data }) {
                     <td>{atten.location.name}</td>
                     <td>{emp.check_in}</td>
                     <td>{emp.check_out}</td>
+                    <td>{emp.working_hours}</td>
                   </tr>
                 });
 

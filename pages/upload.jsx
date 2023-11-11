@@ -5,34 +5,42 @@ import axios from "axios";
 const upload = () => {
 
     const [file, setFile] = useState();
+    const [notify, setNotify] = useState(null);
+    const [notifyClass, setNotifyClass] = useState(null)
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData();
-        
+
         if (file) {
             formData.set('file', file);
             let { data } = await axios.post(
-                "http://127.0.0.1:8000/api/attendances", formData ,
+                "http://127.0.0.1:8000/api/attendances", formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 }
-            )
+            ).catch(function (error) {
+                setNotify('Please Upload an excel file');
+                setNotifyClass('alert mt-4 alert-warning');
+            });
+
             if (data.success) {
-                alert('File uploaded successfully')
+                setFile(null);
+                setNotify('File uploaded successfully');
+                setNotifyClass('alert mt-4 alert-success');
             }
-            else{
-                alert('File uploaded failed')
+            else {
+                setNotify('File uploaded failed');
+                setNotifyClass('alert mt-4 alert-danger');
             }
         }
         else {
-            alert('upload an excel file')
+            setNotify('Please Upload an excel file');
+            setNotifyClass('alert mt-4 alert-warning');
         }
-
-        console.log(data);
     }
 
     return (
@@ -51,6 +59,13 @@ const upload = () => {
                             <button type="submit" className='btn btn-primary'>Upload</button>
                         </div>
                     </form>
+
+                    {
+                        notify && <div className={notifyClass} role="alert">
+                            {notify}
+                        </div>
+                    }
+
                 </div>
             </Layout>
         </>

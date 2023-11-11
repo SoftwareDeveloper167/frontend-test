@@ -25,7 +25,8 @@ const tutorials = ({ data }) => {
                 </h4>
 
                 <div className="alert alert-secondary" role="alert">
-                    The below format should be created in Excel. if the table format or data is invalid then those row will not be uploaded
+                    The below format should be created in Excel. if the table format or data is invalid then those row will not be stored
+                    <br/> If employee already present then update record.
                 </div>
 
                 <table className="table table-sm mb-5">
@@ -67,7 +68,7 @@ const tutorials = ({ data }) => {
                         })}
                     </tbody>
                 </table>
-                
+
                 <h3 className='mb-1 mt-4'>Available Locations</h3>
 
                 <table className="table table-sm mb-5">
@@ -90,7 +91,7 @@ const tutorials = ({ data }) => {
                         })}
                     </tbody>
                 </table>
-                
+
                 <h3 className='mb-1 mt-4'>Available Employees</h3>
 
                 <table className="table table-sm mb-5">
