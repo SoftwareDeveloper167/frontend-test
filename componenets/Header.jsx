@@ -17,6 +17,9 @@ const Header = () => {
                         <li className="nav-item">
                             <Link className="nav-link" href="/upload">Upload Excel File</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" href="/tutorials">How to Upload Excel File?</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
