@@ -16,7 +16,7 @@ const upload = () => {
         if (file) {
             formData.set('file', file);
             let { data } = await axios.post(
-                "http://127.0.0.1:8000/api/attendances", formData,
+                `${process.env.NEXT_PUBLIC_HOST}/attendances`, formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data'

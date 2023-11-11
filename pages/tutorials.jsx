@@ -3,7 +3,7 @@ import Layout from '../componenets/Layout'
 import axios from 'axios'
 
 export const getStaticProps = async () => {
-    const { data } = await axios.get('http://127.0.0.1:8000/api/tutorials');
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/tutorials`);
     return {
         props: {
             data
